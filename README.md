@@ -1,7 +1,7 @@
 
-A simple cef3 client with Qt.
+A simple DDui client with Qt.
 
-![](https://github.com/joinAero/qtcefclient/blob/master/qcef3_1650.png?raw=true)
+![](http://121.40.201.188:8888/)
 
 * 一个跨平台的客户端,基于Qt/QML开发
 * 后端框架采用Nodejs+Express+mongodb+C++

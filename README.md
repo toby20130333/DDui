@@ -1,7 +1,10 @@
 
 A simple DDui client with Qt.
 
-![](http://121.40.201.188:8888/)
+![](https://raw.githubusercontent.com/toby20130333/DDui/master/images/11.png)
+![](https://raw.githubusercontent.com/toby20130333/DDui/master/images/22.png)
+![](https://raw.githubusercontent.com/toby20130333/DDui/master/images/33.png)
+![](https://raw.githubusercontent.com/toby20130333/DDui/master/images/44.png)
 
 * 一个跨平台的客户端,基于Qt/QML开发
 * 后端框架采用Nodejs+Express+mongodb+C++

@@ -11,18 +11,19 @@ ApplicationWindow {
     width: 480
     height: 720
     visible: true
+    flags: Qt.FramelessWindowHint
     Rectangle {
-        color: "#212126"
+        color: "#009A61"
         anchors.fill: parent
     }
     toolBar: Rectangle {
         id:topBar
         width: parent.width
         height: 60
-        color:"#121214"
+        color:"#00AA61"
         Button {
             id: backButton
-            width: opacity ? 60 : 0
+            width: opacity ? 70 : 0
             anchors.left: parent.left
             anchors.leftMargin: 10
             opacity: stackView.depth > 1 ? 1 : 0
@@ -30,10 +31,24 @@ ApplicationWindow {
             antialiasing: true
             height: 40
             Behavior on opacity { NumberAnimation{} }
+            style: ButtonStyle {
+                    background: Rectangle {
+                        implicitWidth: 136
+                        implicitHeight: 36
+                        border.width: control.activeFocus ? 2 : 1
+                        border.color: "#351F47"
+                        radius: 4
+                        gradient: Gradient {
+                            GradientStop { position: 0 ; color: control.pressed ? "#351F47" : "#3E2754" }
+                            GradientStop { position: 1 ; color: control.pressed ? "#3E2754" : "#351F47" }
+                        }
+                    }
+            }
             Text {
                 anchors.verticalCenter: parent.verticalCenter
                 text: "返回"
                 font.pixelSize: 20
+                color: "#ffffff"
                 anchors.horizontalCenter: parent.horizontalCenter
             }
             MouseArea {
@@ -44,12 +59,18 @@ ApplicationWindow {
             }
         }
         Text {
-            font.pixelSize: 30
             Behavior on x { NumberAnimation{ easing.type: Easing.OutCubic} }
             x: backButton.x +( (backButton.width >0)?40:100)+backButton.width;
             anchors.verticalCenter: parent.verticalCenter
-            color: "white"
-            text: "多多指教-专注Qt/QML"
+            color: "#2f2253"
+            text: qsTr("多多指教-专注Qt、QML")
+            font.pixelSize: 28
+            font.italic: false
+            style: Text.Sunken
+            font.family: "Times New Roman"
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            font.bold: true
         }
     }
 
@@ -114,7 +135,7 @@ ApplicationWindow {
             height: parent.height
             ListView {
                 model: pageModel
-                anchors.fill: parent
+                anchors.fill: parent                
                 delegate: AndroidDelegate {
                     text: title
                     onClicked: stackView.push(Qt.resolvedUrl(page))
@@ -123,7 +144,7 @@ ApplicationWindow {
         }        
         onCurrentItemChanged: {
             //console.log("ffffffffffffffffff"+stackView.currentItem)
-            currentItem.signalRegister.connect(ddMainUI.changePage);
+            //currentItem.signalRegister.connect(ddMainUI.changePage);
 
             //currentItem.signalLogin.connect(ddMainUI.changePage);
             //console.log("ffffffffffdddddddddddddddfffffffff"+stackView.get(1,true));
@@ -168,9 +189,10 @@ ApplicationWindow {
            function emitSignal(signalName,signalcmd,signalValue)
            {
                console.log("==========>hello in main.qml emit signal=======>signalName: " + signalName + "signalCmd :" + signalcmd);
-               switch(signalName){
-               case "data":signalConnectInterqml(signalcmd,signalValue);break;
-               }
+//               switch(signalName){
+//               case "register":changePage(signalName,"qml");break;
+//               }
+               changePage(signalName,"")
            }
        }
 }

@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.2
-
+import QtQuick.Controls.Styles 1.2
 Item {
   id: root
   width: parent.width //继承父组建的宽度
@@ -11,7 +11,7 @@ Item {
   //透明矩形，点击的时候可见
   Rectangle {
     anchors.fill: parent//描点充满父组建
-    color: "#11ffffff"//透明
+    color: "#00ffffff"//透明
     visible: mouse.pressed//点击可见
   }
   //文本
@@ -39,7 +39,26 @@ Item {
     anchors.verticalCenter: parent.verticalCenter//垂直居中
     height: 30
     width: 80
-    text: "进入..."//图片路径
+    style: ButtonStyle {
+            background: Rectangle {
+                implicitWidth: 136
+                implicitHeight: 36
+                border.width: control.activeFocus ? 2 : 1
+                border.color: "#351F47"
+                radius: 4
+                gradient: Gradient {
+                    GradientStop { position: 0 ; color: control.pressed ? "#351F47" : "#3E2754" }
+                    GradientStop { position: 1 ; color: control.pressed ? "#3E2754" : "#351F47" }
+                }
+            }
+    }
+    Text {
+        anchors.verticalCenter: parent.verticalCenter
+        text: qsTr("进 入")
+        font.pixelSize: 20
+        color: "#ffffff"
+        anchors.horizontalCenter: parent.horizontalCenter
+    }
   }
   //点击响应
   MouseArea {

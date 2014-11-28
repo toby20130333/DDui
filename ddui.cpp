@@ -26,6 +26,9 @@ void DDui::requestData(int cmd, QStringList processResult)
     if(cmd == 1000)
     {
         nodeManager.addTask(cmd,processResult);
+    }else if(cmd == 1001)
+    {
+         nodeManager.addTask(cmd,processResult);
     }
 }
 

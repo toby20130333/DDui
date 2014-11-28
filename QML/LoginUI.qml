@@ -1,5 +1,8 @@
 import QtQuick 2.0
 import QtQuick.Window 2.0
+import QtQuick.Controls 1.2
+import QtQuick.Controls.Styles 1.2
+
 import DDInterface 1.0
 import "./"
 Rectangle {
@@ -13,13 +16,13 @@ Rectangle {
     radius: 10
     signal signalRegister(string id);
 
-    BorderImage {
-        id: borderImage1
-        x: 0
-        y: 0
-        width: loginUi.width
-        height: loginUi.height
-        source: "file:///D:/Users/Administrator/WebstormProjects/QtClub/nodeclub/public/images/duo-logo.png"
+//    BorderImage {
+//        id: borderImage1
+//        x: 0
+//        y: 0
+//        width: loginUi.width
+//        height: loginUi.height
+//        source: "file:///D:/Users/Administrator/WebstormProjects/QtClub/nodeclub/public/images/duo-logo.png"
         Text {
             id: text7
             x: 37
@@ -36,7 +39,7 @@ Rectangle {
             verticalAlignment: Text.AlignVCenter
             font.bold: true
         }
-    }
+//    }
     Rectangle {
         id: rectangle1
         x: 132
@@ -90,14 +93,15 @@ Rectangle {
 
     Text {
         id: text1
-        x: 77
+        x: 74
         y: 246
         width: 24
         height: 25
-        color: "#5e3636"
         text: qsTr("用户名:")
         verticalAlignment: Text.AlignVCenter
-        font.pixelSize: 12
+        font.pixelSize: 16
+        font.bold: true
+        color: "#351F47"
     }
 
     Text {
@@ -106,22 +110,32 @@ Rectangle {
         y: 328
         width: 30
         height: 24
-        color: "#4b2f2f"
         text: qsTr("密码:")
         verticalAlignment: Text.AlignVCenter
-        font.pixelSize: 12
+        font.pixelSize: 16
+        font.bold: true
+        color: "#351F47"
     }
 
-    Rectangle {
+    Button {
         id: rectangle3
         x: 132
         y: 391
         width: 270
         height: 51
-        color: "#ffffff"
-        radius: 5
-        border.color: "#433e4c"
-
+        style: ButtonStyle {
+                background: Rectangle {
+                    implicitWidth: 136
+                    implicitHeight: 36
+                    border.width: control.activeFocus ? 2 : 1
+                    border.color: "#351F47"
+                    radius: 4
+                    gradient: Gradient {
+                        GradientStop { position: 0 ; color: control.pressed ? "#351F47" : "#3E2754" }
+                        GradientStop { position: 1 ; color: control.pressed ? "#3E2754" : "#351F47" }
+                    }
+                }
+        }
         Text {
             id: text3
             x: 34
@@ -130,6 +144,7 @@ Rectangle {
             height: 38
             text: qsTr("登     陆")
             font.bold: true
+            color: "#ffffff"
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             font.pixelSize: 20
@@ -170,7 +185,7 @@ Rectangle {
             onClicked: {
 //                var lst=[0];
 //                dataInterface.slotRequestData(1001,lst);
-                globalObj.emitSignal("register","");
+                globalObj.emitSignal("register","","");
                 signalRegister("register");
             }
         }

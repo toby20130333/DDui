@@ -1,0 +1,14 @@
+INPUT(
+./release\main.o
+./release\ddui.o
+./release\datainterface.o
+./release\ddloginapi.o
+./release\nodehttpmanager.o
+./release\ddregisterapi.o
+./release\qrc_qml.o
+./release\moc_ddui.o
+./release\moc_datainterface.o
+./release\moc_ddloginapi.o
+./release\moc_nodehttpmanager.o
+./release\moc_ddregisterapi.o
+);

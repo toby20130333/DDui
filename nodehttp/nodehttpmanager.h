@@ -4,6 +4,8 @@
 #include <QObject>
 #include <QMap>
 #include "ddloginapi.h"
+#include "ddregisterapi.h"
+
 class NodeHttpManager : public QObject
 {
     Q_OBJECT
@@ -18,10 +20,12 @@ public:
 
 
     DDLoginApi* loginApi;
+    DDRegisterApi* regApi;
 signals:
    void sendMsgToUI(int cmd,const QStringList& lst);
 public slots:
     void slotLoginApi(const QStringList& lst);
+    void slotRegisterApi(const QStringList& lst);
 };
 
 #endif // NODEHTTPMANAGER_H

@@ -1,21 +1,21 @@
-#include "ddloginapi.h"
+#include "DDRegisterApi.h"
 #define NODE_HOST_URL "http://localhost:3000"
 
-DDLoginApi::DDLoginApi(QObject *parent) :
+DDRegisterApi::DDRegisterApi(QObject *parent) :
     QObject(parent),manager(NULL)
 {
 }
 
-DDLoginApi::~DDLoginApi()
+DDRegisterApi::~DDRegisterApi()
 {
 
 }
-void DDLoginApi::initData(const QStringList &lst)
+void DDRegisterApi::initData(const QStringList &lst)
 {
     lstData = lst;
 }
 
-bool DDLoginApi::nodeAction()
+bool DDRegisterApi::nodeAction()
 {
     if(manager == NULL){
     manager = new QNetworkAccessManager(this);
@@ -25,16 +25,26 @@ bool DDLoginApi::nodeAction()
     //http://localhost:8888/select?aa=001&bb=002
     //http://localhost:3000/login?username=www&passwd=123
     QString hostUrl(NODE_HOST_URL);
-    QString url("/login?");
+    QString url("/register?");
     QString json ="";
     json.append("username=");
-    if(lstData.isEmpty() && lstData.count()<2)
+    if(lstData.isEmpty() && lstData.count()<7)
     {
         return false;
     }
     json.append(lstData.at(0));
     json.append("&password=");
     json.append(lstData.at(1));
+    json.append("&nickname=");
+    json.append(lstData.at(2));
+    json.append("&email=");
+    json.append(lstData.at(3));
+    json.append("&sex=");
+    json.append(lstData.at(4));
+    json.append("&profession=");
+    json.append(lstData.at(5));
+    json.append("&location=");
+    json.append(lstData.at(6));
 
     qDebug()<<" url "<<url<<" urlHost "<<hostUrl <<" json "<<json;
     //use post
@@ -48,8 +58,8 @@ bool DDLoginApi::nodeAction()
     qDebug()<<" Post Url "<<postUrl<<" post body "<<json;
 }
 
-void DDLoginApi::replyFinished(QNetworkReply *reply)
+void DDRegisterApi::replyFinished(QNetworkReply *reply)
 {
-  //qDebug()<<"DDLoginApi::replyFinished "<<reply->readAll();
-  emit signalLoginApi(QStringList()<< reply->readAll().data());
+  //qDebug()<<"DDRegisterApi::replyFinished "<<reply->readAll();
+  emit signalRegisterApi(QStringList()<< reply->readAll().data());
 }

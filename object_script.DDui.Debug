@@ -1,0 +1,14 @@
+INPUT(
+./debug\main.o
+./debug\ddui.o
+./debug\datainterface.o
+./debug\ddloginapi.o
+./debug\nodehttpmanager.o
+./debug\ddregisterapi.o
+./debug\qrc_qml.o
+./debug\moc_ddui.o
+./debug\moc_datainterface.o
+./debug\moc_ddloginapi.o
+./debug\moc_nodehttpmanager.o
+./debug\moc_ddregisterapi.o
+);

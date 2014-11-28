@@ -1,51 +1,43 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.1
 import QtQuick.Controls.Styles 1.1
+import DDInterface 1.0
 
-Rectangle {
+Item {
     id: rectangle1
     width: 480
     height: 660
     signal signalLogin(string id);
-    gradient: Gradient {
-        GradientStop {
-            position: 0
-            color: "#ffffff"
-        }
-
-        GradientStop {
-            position: 1
-            color: "#000000"
-        }
-    }
-    border.color: "#2c3a36"
 
     Text {
         id: text1
         x: 65
-        y: 121
+        y: 101
         width: 56
         height: 21
         text: qsTr("用户名:")
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
-        font.pixelSize: 12
+        font.pixelSize: 14
+        font.bold: true
+        color: "#351F47"
     }
-
     Rectangle {
         id: rectangle2
         x: 134
-        y: 108
+        y: 88
         width: 238
         height: 47
+        radius: 5
         color: "#ffffff"
         border.color: "#2c3a36"
-
         TextInput {
             id: textInput1
             y: 14
             height: 20
-            text: qsTr("tb1210582007")
+            clip: true
+            text: qsTr("tb1210582007@126.com")
+            selectByMouse : true
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignVCenter
             anchors.verticalCenter: parent.verticalCenter
@@ -54,7 +46,7 @@ Rectangle {
             anchors.left: parent.left
             anchors.rightMargin: 4
             anchors.leftMargin: 4
-            font.pixelSize: 24
+            font.pixelSize: 20
         }
     }
 
@@ -65,7 +57,9 @@ Rectangle {
         width: 61
         height: 21
         text: qsTr("昵称:")
-        font.pixelSize: 12
+        font.pixelSize: 14
+        font.bold: true
+        color: "#351F47"
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
     }
@@ -77,15 +71,18 @@ Rectangle {
         width: 238
         height: 47
         color: "#ffffff"
+        radius: 5
         TextInput {
             id: textInput2
-            text: qsTr("")
+            text: qsTr("寒山-居士")
+            clip: true
             anchors.fill: parent
             anchors.leftMargin: 4
-            font.pixelSize: 24
+            font.pixelSize: 20
             anchors.bottomMargin: 4
             anchors.topMargin: 4
             anchors.rightMargin: 4
+            selectByMouse : true
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignVCenter
         }
@@ -99,7 +96,9 @@ Rectangle {
         width: 56
         height: 21
         text: qsTr("密码:")
-        font.pixelSize: 12
+        font.pixelSize: 14
+        font.bold: true
+        color: "#351F47"
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
     }
@@ -111,13 +110,15 @@ Rectangle {
         width: 238
         height: 47
         color: "#ffffff"
+        radius: 5
         TextInput {
             id: textInput3
-            text: qsTr("")
+            text: qsTr("123456tb")
+            clip: true
             echoMode: TextInput.Password
             anchors.fill: parent
-            anchors.leftMargin: 4
-            font.pixelSize: 24
+            anchors.leftMargin: 5
+            font.pixelSize: 18
             anchors.bottomMargin: 4
             anchors.topMargin: 4
             anchors.rightMargin: 4
@@ -135,7 +136,9 @@ Rectangle {
         height: 21
         text: qsTr("确认密码:")
         verticalAlignment: Text.AlignVCenter
-        font.pixelSize: 12
+        font.pixelSize: 14
+        font.bold: true
+        color: "#351F47"
         horizontalAlignment: Text.AlignHCenter
     }
 
@@ -146,16 +149,18 @@ Rectangle {
         width: 238
         height: 47
         color: "#ffffff"
+        radius: 5
         TextInput {
             id: textInput4
-            text: qsTr("")
+            text: qsTr("123456tb")
+            clip: true
             echoMode: TextInput.Password
             anchors.fill: parent
-            anchors.leftMargin: 4
-            font.pixelSize: 24
+            anchors.leftMargin: 5
+            font.pixelSize: 18
             anchors.bottomMargin: 4
             anchors.topMargin: 4
-            anchors.rightMargin: 4
+            anchors.rightMargin: 4            
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignVCenter
         }
@@ -168,7 +173,9 @@ Rectangle {
         width: 56
         height: 21
         text: qsTr("性别:")
-        font.pixelSize: 12
+        font.pixelSize: 14
+        font.bold: true
+        color: "#351F47"
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
     }
@@ -228,7 +235,9 @@ Rectangle {
         width: 56
         height: 21
         text: qsTr("邮箱:")
-        font.pixelSize: 12
+        font.pixelSize: 14
+        font.bold: true
+        color: "#351F47"
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
     }
@@ -240,15 +249,18 @@ Rectangle {
         width: 238
         height: 47
         color: "#ffffff"
+        radius: 5
         TextInput {
             id: textInput5
-            text: qsTr("")
+            text: qsTr("tb1210582007@126.com")
             anchors.fill: parent
             anchors.leftMargin: 4
-            font.pixelSize: 24
+            font.pixelSize: 20
             anchors.bottomMargin: 4
             anchors.topMargin: 4
             anchors.rightMargin: 4
+            clip: true
+            selectByMouse : true
             horizontalAlignment: Text.AlignLeft
             verticalAlignment: Text.AlignVCenter
         }
@@ -262,14 +274,17 @@ Rectangle {
         width: 56
         height: 21
         text: qsTr("职业:")
-        font.pixelSize: 12
+        font.pixelSize: 14
+        font.bold: true
+        color: "#351F47"
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
     }
     ComboBox {
+        id:proComBox
         x: 134
         y: 487
-        currentIndex: 2
+        currentIndex: 0
         model: ListModel {
             id: cbItems
             ListElement { text: "UI设计师"; color: "Yellow" }
@@ -289,20 +304,21 @@ Rectangle {
               border.width: 1
               border.color: !control.enabled ? "#DADAD9" : control.activeFocus ? "#3C3C3B" : "#9D9C9C"
               antialiasing: true
+              radius: 5
               Rectangle {
                 id: glyph
                 width: 10
                 height: 10
+                radius: 5
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.right: parent.right
                 anchors.rightMargin: 10
-                color: !control.enabled ? "#DADAD9" : control.hovered ? "#1D5086" : "#5791CD"
+                color: !control.enabled ? "#009A61" : control.hovered ? "#00AA61" : "#009A61"
                 states: State {
                   name: "inverted"
                   when: __popup.__popupVisible
                   PropertyChanges { target: glyph; rotation: 180 }
                 }
-
                 transitions: Transition {
                   RotationAnimation { duration: 50; direction: RotationAnimation.Clockwise }
                 }
@@ -313,10 +329,13 @@ Rectangle {
               anchors.left: parent.left
               anchors.leftMargin: 5
               text: control.currentText
-              color: !control.enabled ? "#DADAD9" : "#6F6E6E"
+              color: !control.enabled ? "#009A61" : "#00AA61"
               anchors.fill: parent
               font.pixelSize: 12
             }
+            selectionColor : "#009A61"
+            selectedTextColor : "#ffffff"
+            textColor : "#331E45"
           }
     }
 
@@ -327,14 +346,17 @@ Rectangle {
         width: 56
         height: 21
         text: qsTr("现居:")
-        font.pixelSize: 12
+        font.pixelSize: 14
+        font.bold: true
+        color: "#351F47"
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
     }
     ComboBox {
+        id:locationComBox
         x: 134
         y: 529
-        currentIndex: 2
+        currentIndex: 0
         model: ListModel {
             id: cbItems2
             ListElement { text: "上海"; color: "Yellow" }
@@ -352,22 +374,23 @@ Rectangle {
               implicitHeight: 25
               color: "#FFFFFF"
               border.width: 1
-              border.color: !control.enabled ? "#DADAD9" : control.activeFocus ? "#3C3C3B" : "#9D9C9C"
+              radius: 5
+              border.color: !control.enabled ? "#009A61" : control.activeFocus ? "#00AA61" : "#009A61"
               antialiasing: true
               Rectangle {
                 id: glyph2
                 width: 10
                 height: 10
+                radius: 5
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.right: parent.right
                 anchors.rightMargin: 10
-                color: !control.enabled ? "#DADAD9" : control.hovered ? "#1D5086" : "#5791CD"
+                color: !control.enabled ? "#009A61" : control.hovered ? "#00AA61" : "#009A61"
                 states: State {
                   name: "inverted"
                   when: __popup.__popupVisible
                   PropertyChanges { target: glyph2; rotation: 180 }
                 }
-
                 transitions: Transition {
                   RotationAnimation { duration: 50; direction: RotationAnimation.Clockwise }
                 }
@@ -378,14 +401,18 @@ Rectangle {
               anchors.left: parent.left
               anchors.leftMargin: 5
               text: control.currentText
-              color: !control.enabled ? "#DADAD9" : "#6F6E6E"
+              color: !control.enabled ? "#009A61" : "#00AA61"
               anchors.fill: parent
               font.pixelSize: 12
             }
+            selectionColor : "#009A61"
+            selectedTextColor : "#D8DCDE"
+            textColor : "#331E45"
           }
     }
 
     CheckBox {
+        id:cheBox
         x: 131
         y: 572
         text: "我已阅读并接受版权声明"
@@ -423,32 +450,73 @@ Rectangle {
             onClicked: {
                 console.log("fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff")
                 signalLogin("login");
+                globalObj.emitSignal("login","","");
             }
         }
     }
-    Rectangle {
+    Button {
         id: rectangle7
         x: 131
         y: 605
         width: 136
         height: 36
-        color: "#d75031"
-        border.width: 0
-
+        style: ButtonStyle {
+                background: Rectangle {
+                    implicitWidth: 136
+                    implicitHeight: 36
+                    border.width: control.activeFocus ? 2 : 1
+                    border.color: "#351F47"
+                    radius: 4
+                    gradient: Gradient {
+                        GradientStop { position: 0 ; color: control.pressed ? "#351F47" : "#3E2754" }
+                        GradientStop { position: 1 ; color: control.pressed ? "#3E2754" : "#351F47" }
+                    }
+                }
+        }
         Text {
-            id: text9
-            x: 32
-            y: 12
-            width: 71
-            height: 16
+            anchors.verticalCenter: parent.verticalCenter
             text: qsTr("注   册")
-            font.bold: false
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 20
+            color: "#ffffff"
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
+        MouseArea{
+            id:registerma
+            enabled: cheBox.checked
+            anchors.bottomMargin: 0
+            anchors.topMargin: 0
+            anchors.rightMargin: -14
+            anchors.leftMargin: -14
+            anchors.fill: parent
+            onClicked: {
+                var lst=[textInput1.text,textInput4.text,textInput2.text,textInput5.text
+                        ,getSexStatus(),proComBox.currentText,locationComBox.currentText];
+                dataInterface.slotRequestData(1001,lst);
+            }
+        }
+    }
+    DataInterface{
+        id:dataInterface
+    }
+    Connections{
+        target: dataInterface
+        onSignalNotifyUI:
+        {
+
+        }
+        onSignalResponseDataReady:{
+            if(cmd === 1001){
+                console.log("finalData "+finalData);
+            }
         }
     }
 
-
-
+    function getSexStatus(){
+        if(sexRadio1.checked)
+        {
+            return 1;
+        }else{
+            return 0;
+        }
+    }
 }

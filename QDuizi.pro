@@ -20,7 +20,8 @@ SOURCES += main.cpp \
     ddui.cpp \
     interface/datainterface.cpp \
     nodehttp/ddloginapi.cpp \
-    nodehttp/nodehttpmanager.cpp
+    nodehttp/nodehttpmanager.cpp \
+    nodehttp/ddregisterapi.cpp
 
 OTHER_FILES += \
     app.js \
@@ -46,7 +47,8 @@ HEADERS += \
     ddui.h \
     interface/datainterface.h \
     nodehttp/ddloginapi.h \
-    nodehttp/nodehttpmanager.h
+    nodehttp/nodehttpmanager.h \
+    nodehttp/ddregisterapi.h
 
 SUBDIRS += \
     QML/RepeaterQml.pro

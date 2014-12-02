@@ -1,14 +1,21 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.1
 import QtQuick.Controls.Styles 1.1
+import QtQuick.XmlListModel 2.0
 import DDInterface 1.0
 
 Item {
     id: rectangle1
     width: 480
     height: 660
-    signal signalLogin(string id);
+    signal signalLogin(string id);    
+    ListModel{
+        id:tmpModel;
+    }
+    property bool loading: xmlModel.status === XmlListModel.Loading
+    onLoadingChanged: {
 
+    }
     Text {
         id: text1
         x: 65
@@ -316,7 +323,7 @@ Item {
                 color: !control.enabled ? "#009A61" : control.hovered ? "#00AA61" : "#009A61"
                 states: State {
                   name: "inverted"
-                  when: __popup.__popupVisible
+                  when: __popup.__popupVisible1
                   PropertyChanges { target: glyph; rotation: 180 }
                 }
                 transitions: Transition {
@@ -357,17 +364,21 @@ Item {
         x: 134
         y: 529
         currentIndex: 0
-        model: ListModel {
-            id: cbItems2
-            ListElement { text: "上海"; color: "Yellow" }
-            ListElement { text: "北京"; color: "Green" }
-            ListElement { text: "湖南"; color: "Brown" }
-            ListElement { text: "深圳"; color: "Green" }
-            ListElement { text: "广东"; color: "Red" }
-        }
         width: 100
-        onCurrentIndexChanged: console.debug(cbItems2.get(currentIndex).text + ", " + cbItems2.get(currentIndex).color)
-
+        model: XmlListModel {
+            id: xmlModel
+            source: "qrc:/Province.xml"
+            query: "/provinces/province"
+            // query the book title
+            XmlRole { name: "code"; query: "@id/string()" }
+            XmlRole { name: "cityname"; query: "@name/string()" }
+        }
+        onCurrentIndexChanged: {
+            console.debug(xmlModel.get(currentIndex).cityname + ", " + xmlModel.get(currentIndex).code);
+            var lst=[xmlModel.get(currentIndex).cityname,xmlModel.get(currentIndex).code];
+            dataInterface.slotRequestData(1002,lst);
+        }
+        textRole: "cityname"
         style: ComboBoxStyle {
             background: Rectangle {
               implicitWidth: 100
@@ -388,7 +399,7 @@ Item {
                 color: !control.enabled ? "#009A61" : control.hovered ? "#00AA61" : "#009A61"
                 states: State {
                   name: "inverted"
-                  when: __popup.__popupVisible
+                  when: __popup.__popupVisible2
                   PropertyChanges { target: glyph2; rotation: 180 }
                 }
                 transitions: Transition {
@@ -410,7 +421,64 @@ Item {
             textColor : "#331E45"
           }
     }
-
+    ComboBox {
+        id:locationComBox2
+        x: 254
+        y: 529
+        currentIndex: 0
+        width: 100
+        model: XmlListModel {
+            id: xmlModel2
+            source: "qrc:/Province.xml"
+            query: "/provinces/province/city"
+            // query the book title
+            XmlRole { name: "code"; query: "@code/string()" }
+            XmlRole { name: "cityname"; query: "@cityname/string()" }
+        }
+        onCurrentIndexChanged: console.debug(xmlModel2.get(currentIndex).cityname + ", " + xmlModel2.get(currentIndex).code)
+        textRole: "cityname"
+        style: ComboBoxStyle {
+            background: Rectangle {
+              implicitWidth: 100
+              implicitHeight: 25
+              color: "#FFFFFF"
+              border.width: 1
+              radius: 5
+              border.color: !control.enabled ? "#009A61" : control.activeFocus ? "#00AA61" : "#009A61"
+              antialiasing: true
+              Rectangle {
+                id: glyph3
+                width: 10
+                height: 10
+                radius: 5
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.right: parent.right
+                anchors.rightMargin: 10
+                color: !control.enabled ? "#009A61" : control.hovered ? "#00AA61" : "#009A61"
+                states: State {
+                  name: "inverted"
+                  when: __popup.__popupVisible
+                  PropertyChanges { target: glyph3; rotation: 180 }
+                }
+                transitions: Transition {
+                  RotationAnimation { duration: 50; direction: RotationAnimation.Clockwise }
+                }
+              }
+            }
+            label: Label {
+              verticalAlignment: Qt.AlignVCenter
+              anchors.left: parent.left
+              anchors.leftMargin: 5
+              text: control.currentText
+              color: !control.enabled ? "#009A61" : "#00AA61"
+              anchors.fill: parent
+              font.pixelSize: 12
+            }
+            selectionColor : "#009A61"
+            selectedTextColor : "#D8DCDE"
+            textColor : "#331E45"
+          }
+    }
     CheckBox {
         id:cheBox
         x: 131
@@ -490,7 +558,7 @@ Item {
             anchors.fill: parent
             onClicked: {
                 var lst=[textInput1.text,textInput4.text,textInput2.text,textInput5.text
-                        ,getSexStatus(),proComBox.currentText,locationComBox.currentText];
+                        ,getSexStatus(),proComBox.currentText,locationComBox.currentText+"|"+locationComBox2.currentText];
                 dataInterface.slotRequestData(1001,lst);
             }
         }
@@ -507,6 +575,9 @@ Item {
         onSignalResponseDataReady:{
             if(cmd === 1001){
                 console.log("finalData "+finalData);
+            }else if(cmd == 1002)
+            {
+                console.log("finalData 1002 "+finalData);
             }
         }
     }

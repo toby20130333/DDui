@@ -4,10 +4,16 @@
 #include <QQmlApplicationEngine>
 #include <QtQml>
 #include "interface/datainterface.h"
+#include "xml/xbeltree.h"
+#include "xml/xmlparsewin.h"
+#include "xml/xmlitemparse.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+
+//    XmlItemParse win;
+//    win.parseXML();
 //    DDui* w = DDui::instance();
 //    w->show();
 //    QQuickView *view = new QQuickView;

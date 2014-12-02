@@ -23,13 +23,17 @@ DDui::~DDui()
 void DDui::requestData(int cmd, QStringList processResult)
 {
     qDebug()<<"DDui::requestData "<<cmd<<" "<<processResult;
-    if(cmd == 1000)
-    {
-        nodeManager.addTask(cmd,processResult);
-    }else if(cmd == 1001)
-    {
-         nodeManager.addTask(cmd,processResult);
-    }
+    nodeManager.addTask(cmd,processResult);
+//    if(cmd == 1000)
+//    {
+//        nodeManager.addTask(cmd,processResult);
+//    }else if(cmd == 1001)
+//    {
+//         nodeManager.addTask(cmd,processResult);
+//    }else if(cmd == 1002)
+//    {
+//         nodeManager.addTask(cmd,processResult);
+//    }
 }
 
 void DDui::responseNotifyUI(bool error, int cmd, QStringList processResult)

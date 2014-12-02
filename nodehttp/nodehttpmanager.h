@@ -5,6 +5,7 @@
 #include <QMap>
 #include "ddloginapi.h"
 #include "ddregisterapi.h"
+#include "ddcityinsertapi.h"
 
 class NodeHttpManager : public QObject
 {
@@ -21,11 +22,14 @@ public:
 
     DDLoginApi* loginApi;
     DDRegisterApi* regApi;
+    DDCityInsertApi* cityApi;
+
 signals:
    void sendMsgToUI(int cmd,const QStringList& lst);
 public slots:
     void slotLoginApi(const QStringList& lst);
     void slotRegisterApi(const QStringList& lst);
+    void slotCityAddApi(const QStringList& lst);
 };
 
 #endif // NODEHTTPMANAGER_H

@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui webkit quick
+QT       += core gui webkit quick xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets webkitwidgets quickwidgets
 TARGET = DDui
@@ -21,7 +21,11 @@ SOURCES += main.cpp \
     interface/datainterface.cpp \
     nodehttp/ddloginapi.cpp \
     nodehttp/nodehttpmanager.cpp \
-    nodehttp/ddregisterapi.cpp
+    nodehttp/ddregisterapi.cpp \
+    xml/xbeltree.cpp \
+    xml/xmlparsewin.cpp \
+    xml/xmlitemparse.cpp \
+    nodehttp/ddcityinsertapi.cpp
 
 OTHER_FILES += \
     app.js \
@@ -48,8 +52,12 @@ HEADERS += \
     interface/datainterface.h \
     nodehttp/ddloginapi.h \
     nodehttp/nodehttpmanager.h \
-    nodehttp/ddregisterapi.h
-
+    nodehttp/ddregisterapi.h \
+    xml/xbeltree.h \
+    xml/xmlparsewin.h \
+    QML/cities.xml \
+    xml/xmlitemparse.h \
+    nodehttp/ddcityinsertapi.h
 SUBDIRS += \
     QML/RepeaterQml.pro
 

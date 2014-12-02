@@ -16,5 +16,9 @@
         <file>../images/header.png</file>
         <file>../images/selectedrow.png</file>
         <file>RegisterUI.qml</file>
+        <file>XMLData.qml</file>
+        <file>../1.xml</file>
+        <file>../Province.xml</file>
+        <file>cities.xml</file>
     </qresource>
 </RCC>

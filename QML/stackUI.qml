@@ -11,7 +11,10 @@ ApplicationWindow {
     width: 480
     height: 720
     visible: true
-    flags: Qt.FramelessWindowHint
+//    flags: Qt.FramelessWindowHint
+    XMLData{
+        id:data
+    }
     Rectangle {
         color: "#009A61"
         anchors.fill: parent
@@ -186,13 +189,13 @@ ApplicationWindow {
            property int size
            property variant attributes
            signal signalConnectInterqml(string signalCmd,variant signalValue);
-           function emitSignal(signalName,signalcmd,signalValue)
+           function emitSignal(signalname,signalcmd,signalValue)
            {
-               console.log("==========>hello in main.qml emit signal=======>signalName: " + signalName + "signalCmd :" + signalcmd);
-//               switch(signalName){
-//               case "register":changePage(signalName,"qml");break;
+               console.log("==========>hello in main.qml emit signal=======>signalname: " + signalname + "signalCmd :" + signalcmd);
+//               switch(signalname){
+//               case "register":changePage(signalname,"qml");break;
 //               }
-               changePage(signalName,"")
+               changePage(signalname,"")
            }
        }
 }

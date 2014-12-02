@@ -39,6 +39,17 @@ void NodeHttpManager::addTask(int cmd, QStringList data)
         regApi->initData(data);
         regApi->nodeAction();
     }break;
+    case 1002:
+    {
+        if(!taskMap[cmd])
+        {
+            cityApi = new DDCityInsertApi();
+            taskMap[cmd] = cityApi;
+            connect(cityApi,SIGNAL(signalLoginApi(QStringList)),this,SLOT(slotCityAddApi(QStringList)));
+        }
+        cityApi->initData(data);
+        cityApi->nodeAction();
+    }break;
     default:
         break;
     }
@@ -48,8 +59,11 @@ void NodeHttpManager::slotLoginApi(const QStringList &lst)
 {
     emit sendMsgToUI(1000,lst);
 }
-
 void NodeHttpManager::slotRegisterApi(const QStringList &lst)
 {
     emit sendMsgToUI(1001,lst);
+}
+void NodeHttpManager::slotCityAddApi(const QStringList &lst)
+{
+    emit sendMsgToUI(1002,lst);
 }

@@ -1,5 +1,5 @@
 #include "ddloginapi.h"
-#define NODE_HOST_URL "http://localhost:3000"
+#define NODE_HOST_URL "http://localhost:8080"
 
 DDLoginApi::DDLoginApi(QObject *parent) :
     QObject(parent),manager(NULL)
@@ -22,7 +22,6 @@ bool DDLoginApi::nodeAction()
     connect(manager, SIGNAL(finished(QNetworkReply*)),
             this, SLOT(replyFinished(QNetworkReply*)));
     }
-    //http://localhost:8888/select?aa=001&bb=002
     //http://localhost:3000/login?username=www&passwd=123
     QString hostUrl(NODE_HOST_URL);
     QString url("/login?");
@@ -36,7 +35,7 @@ bool DDLoginApi::nodeAction()
     json.append("&password=");
     json.append(lstData.at(1));
 
-    qDebug()<<" url "<<url<<" urlHost "<<hostUrl <<" json "<<json;
+//    qDebug()<<" url "<<url<<" urlHost "<<hostUrl <<" json "<<json;
     //use post
     QNetworkRequest request;
     QString postUrl("");
